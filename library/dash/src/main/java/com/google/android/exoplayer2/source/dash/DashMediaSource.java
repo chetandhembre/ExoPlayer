@@ -355,7 +355,7 @@ public final class DashMediaSource extends BaseMediaSource {
    * SourceInfoRefreshListener#onSourceInfoRefreshed(MediaSource, Timeline, Object)} when the
    * source's {@link Timeline} is changing dynamically (for example, for incomplete live streams).
    */
-  private static final int NOTIFY_MANIFEST_INTERVAL_MS = 5000;
+  private static final int NOTIFY_MANIFEST_INTERVAL_MS = 100;
   /**
    * The minimum default start position for live streams, relative to the start of the live window.
    */
@@ -627,6 +627,9 @@ public final class DashMediaSource extends BaseMediaSource {
     }
   }
 
+  public String getManifestUri() {
+    return this.manifestUri.toString();
+  }
   // MediaSource implementation.
 
   @Override
@@ -1236,6 +1239,7 @@ public final class DashMediaSource extends BaseMediaSource {
         }
       }
       // Attempt to snap to the start of the corresponding video segment.
+      /*
       int periodIndex = 0;
       long defaultStartPositionInPeriodUs = offsetInFirstPeriodUs + windowDefaultStartPositionUs;
       long periodDurationUs = manifest.getPeriodDurationUs(periodIndex);
@@ -1263,6 +1267,9 @@ public final class DashMediaSource extends BaseMediaSource {
       long segmentNum = snapIndex.getSegmentNum(defaultStartPositionInPeriodUs, periodDurationUs);
       return windowDefaultStartPositionUs + snapIndex.getTimeUs(segmentNum)
           - defaultStartPositionInPeriodUs;
+
+       */
+      return windowDefaultStartPositionUs;
     }
 
     @Override

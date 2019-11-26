@@ -316,6 +316,10 @@ public class SimpleExoPlayer extends BasePlayer
     }
   }
 
+  public MediaSource getMediaSource() {
+    return this.mediaSource;
+  }
+
   @Override
   public void setVideoSurface(@Nullable Surface surface) {
     verifyApplicationThread();
